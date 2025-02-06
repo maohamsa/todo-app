@@ -1,7 +1,7 @@
 import { ToDoCard } from "./ToDoCard";
 
 export function ToDoList (props) {
-    const {todos, selectedTab} = props
+    const {todos, selectedTab, handleEditTodo, setIsEditing} = props
     
     const filterTodosList = selectedTab === 'All' ? 
         todos :
@@ -14,10 +14,13 @@ export function ToDoList (props) {
             {filterTodosList.map((todo,todoIndex)=>{
                 return (
                     <ToDoCard 
+                        handleEditTodo={handleEditTodo} 
                         key={todoIndex}
                         todoIndex={todos.findIndex(val => val.input == todo.input)}
                         {...props}                        
-                        todo={todo} />
+                        todo={todo}
+                        setIsEditing={setIsEditing}
+                         />
                 )
             })}
 
